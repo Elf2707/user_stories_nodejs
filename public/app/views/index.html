@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="MyApp" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <base href="/">
+    <title>User Story</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <!--App services-->
+    <script src="app/services/authService.js"></script>
+    <script src="app/services/userService.js"></script>
+    <script src="app/services/storyService.js"></script>
+
+    <!--App controllers-->
+    <script src="app/controllers/mainCtrl.js"></script>
+    <script src="app/controllers/usrCtrl.js"></script>
+    <script src="app/controllers/storyCtrl.js"></script>
+
+    <!--App directives-->
+    <script src="app/directives/revers.js"></script>
+
+    <!--App main-->
+    <script src="app/app.routes.js"></script>
+    <script src="app/app.js"></script>
+</head>
+<body ng-controller="MainController as main">
+<header>
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand"><span class="glyphicon glyphicon-book"></span>User Story</a>
+            </div>
+
+            <ul class="nav navbar-nav">
+                <li><a href="/users"></a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
+                <li ng-if="!main.loggedIn"><a href="/signup">Signup</a></li>
+                <li ng-if="main.loggedIn"><a href="#">Hello {{main.user.username}}</a></li>
+                <li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <div ng-view></div>
+</main>
+
+<footer>
+
+</footer>
+</body>
+</html>
